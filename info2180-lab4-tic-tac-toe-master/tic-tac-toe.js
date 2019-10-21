@@ -5,7 +5,7 @@ function main (){
     makeSquares();
     clearSquares();
 
-    const arr = ["","","","","","","","",""];
+    let arr = ["","","","","","","","",""];
     let state = "";
 
     hoverSquares();
@@ -77,7 +77,52 @@ function trackGame(arr,state){
   for(let i = 0; i < squares.length; i++){
     squares[i].onclick = function(){
       state = updateSquares(arr,this,state,i);
+      return checkWin(arr);
     }
+  }
+
+
+}
+
+function clearStatus(){
+  document.getElementById("status").innerHTML = "";
+}
+
+function winStatus(winner){
+  document.getElementById('status').classList.add("you-won");
+  document.getElementById('status').innerHTML = "Congratulations! " + winner + " is the Winner!"
+}
+
+
+function checkWin(arr){
+
+  //Check Horizonals--------------------------------
+  if(arr[0] !== "" && (arr[0] === arr[1] && (arr[1] === arr[2]))){
+    winStatus(arr[0]);
+  }
+  if(arr[3] !== "" && (arr[3] === arr[4] && (arr[4] === arr[5]))){
+    winStatus(arr[3]);
+  }
+  if(arr[6] !== "" && (arr[6] === arr[7] && (arr[7] === arr[8]))){
+    winStatus(arr[6]);
+  }
+
+  //Check Verticals---------------------------------
+  if(arr[0] !== "" && (arr[0] === arr[3] && (arr[3] === arr[6]))){
+    winStatus(arr[0]);
+  }
+  if(arr[1] !== "" && (arr[1] === arr[4] && (arr[4] === arr[7]))){
+    winStatus(arr[1]);
+  }
+  if(arr[2] !== "" && (arr[2] === arr[5] && (arr[5] === arr[8]))){
+    winStatus(arr[2]);
+  }
+  //Check Diagaonals--------------------------------
+  if(arr[0] !== "" && (arr[0] === arr[4] && (arr[4] === arr[8]))){
+    winStatus(arr[0]);
+  }
+  if(arr[2] !== "" && (arr[2] === arr[4] && (arr[4] === arr[6]))){
+    winStatus(arr[2]);
   }
 
 }
