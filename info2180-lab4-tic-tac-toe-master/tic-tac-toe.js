@@ -8,13 +8,8 @@ function main (){
     const arr = ["","","","","","","","",""];
     let state = "";
 
+    hoverSquares();
     trackGame(arr,state);
-    /*squares = document.getElementsByClassName('square')
-    for(let i = 0; i < squares.length; i++){
-      squares[i].onclick = function(){
-        state = updateSquares(arr,this,state,i);
-      }
-    }*/
 
   }
 }
@@ -62,6 +57,18 @@ function updateSquares(arr,sqr,state,pos){
   }
   return state;
 
+}
+
+function hoverSquares(){
+  squares = document.getElementsByClassName('square');
+  for(let i = 0; i < squares.length; i++){
+    squares[i].onmouseover = function(){
+      this.classList.add("hover");
+    }
+    squares[i].onmouseout = function(){
+      this.classList.remove("hover");
+    }
+  }
 }
 
 function trackGame(arr,state){
