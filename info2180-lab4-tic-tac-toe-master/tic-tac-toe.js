@@ -10,14 +10,23 @@ function main (){
 
     hoverSquares();
     trackGame(arr,state);
+    document.getElementsByClassName("btn")[0].addEventListener("click", function(){
+    reset();
+    state = "";
+    for(let i = 0; i < arr.length; i++){
+      arr[i] = "";
+    }
+
+    });
 
   }
 }
 
 function clearSquares(){
-  squares = document.getElementsByClassName("squares");
+  squares = document.getElementsByClassName("square");
   for(let i = 0; i < squares.length; i++){
     squares[i].innerHTML = "";
+    squares[i].className = "square";
   }
 }
 
@@ -89,10 +98,10 @@ function clearStatus(){
 }
 
 function winStatus(winner){
+
   document.getElementById('status').classList.add("you-won");
   document.getElementById('status').innerHTML = "Congratulations! " + winner + " is the Winner!"
 }
-
 
 function checkWin(arr){
 
@@ -125,6 +134,12 @@ function checkWin(arr){
     winStatus(arr[2]);
   }
 
+}
+
+function reset(){
+  document.getElementById("status").classList.remove("you-won");
+  document.getElementById("status").innerHTML = "Move your mouse over a square and click to play an X or an O."
+  clearSquares();
 }
 
 main ();
